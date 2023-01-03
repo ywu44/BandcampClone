@@ -1,0 +1,23 @@
+.pageNotFoundContainer {
+  height: 80vh;
+  background-color: rgb(247, 247, 247);
+}
+.pageNotFoundBox {
+  width: 70%;
+  height: 100%;
+  margin: 0px auto;
+  background-color: white;
+}
+.header-user {
+  width: 100vw;
+  min-width: 800px;
+  padding: 0px 15vw 0px;
+  position: fixed;
+  top: 0;
+  background-color: white;
+}
+.header-logo img {
+  height: 60px;
+  width: 100%;
+  min-width: 100px;
+}

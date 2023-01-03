@@ -1,0 +1,301 @@
+<app-header></app-header>
+<div class="user-mainContainer">
+  <div class="user-banner">
+    <img src="https://f4.bcbits.com/img/0018782679_100.png" alt="" />
+  </div>
+  <div class="uer-contentMainContainer">
+    <div class="user-header pb-12 flex">
+      <div class="user-pfp">
+        <img src="{{ currentUser.profilePic }}" alt="" />
+      </div>
+      <div class="user-header-info pt-10 pl-10">
+        <div class="user-header-info-name flex">
+          <p class="text-3xl font-bold">{{ currentUser.username }}</p>
+          <div class="edit-profile pl-6 pt-2">
+            <button>
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              EDIT PROFILE
+            </button>
+          </div>
+          <div class="share pl-4 pt-3 text-sm">
+            <a href="#"
+              ><i class="fa fa-share-alt mr-1" aria-hidden="true"></i
+              ><span class="hover:underline">share profile</span></a
+            >
+          </div>
+        </div>
+        <div class="user-header-info-location mt-4">
+          <p class="text-sm text-gray-500">{{ currentUser.location }}</p>
+        </div>
+        <div class="user-header-info-website mt-2">
+          <a
+            class="hover:underline text-gray-500"
+            href="https://www.{{ currentUser.website }}"
+            >{{ currentUser.website }}</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="contentChangeButtons font-bold flex">
+      <button
+        class="contentChangeButton wishlistButton"
+        (click)="changeTab('.wishlistButton')"
+        (mouseover)="onMouseOver($event)"
+        (mouseleave)="onMouseLeave($event)"
+      >
+        wishlist
+        <span class="font-normal ml-1">{{ currentUser.wishlist.length }}</span>
+      </button>
+      <button
+        class="contentChangeButton collectionButton"
+        (click)="changeTab('.collectionButton')"
+        (mouseover)="onMouseOver($event)"
+        (mouseleave)="onMouseLeave($event)"
+      >
+        collection
+        <span class="font-normal ml-1">{{ currentUser.userCollection.length }}</span>
+      </button>
+      <button
+        class="contentChangeButton followerButton"
+        (click)="changeTab('.followerButton')"
+        (mouseover)="onMouseOver($event)"
+        (mouseleave)="onMouseLeave($event)"
+      >
+        follower
+        <span class="font-normal ml-1">{{ currentUser.followers.length }}</span>
+      </button>
+      <button
+        class="contentChangeButton followingButton"
+        (click)="changeTab('.followingButton')"
+        (mouseover)="onMouseOver($event)"
+        (mouseleave)="onMouseLeave($event)"
+      >
+        following
+        <span class="font-normal ml-1">{{
+          currentUser.followingUser.length + currentUser.followingArtist.length
+        }}</span>
+      </button>
+      <a
+        class="font-normal text-sm text-gray-500 pt-1 ml-auto hover:underline"
+        href="#"
+        >not seeing a purchase?</a
+      >
+    </div>
+    <div class="user-content-container">
+      <div *ngIf="showWishlist" class="searchBar mt-6">
+        <div class="relative text-gray-600">
+          <input
+            type="text"
+            name="search"
+            class="w-56 h-8 pl-8 text-black bg-gray-100 focus:outline-none placeholder:text-gray-500 text-xs"
+            placeholder="search your wishlist..."
+            autocomplete="off"
+            (input)="searchWishlist($event)"
+          />
+          <span class="absolute inset-y-0 pl-2 flex items-center">
+            <i class="fa fa-search text-gray-400" aria-hidden="true"></i>
+          </span>
+        </div>
+      </div>
+      <div *ngIf="showCollection" class="searchBar mt-6">
+        <div class="relative text-gray-600">
+          <input
+            type="text"
+            name="search"
+            class="w-56 h-8 pl-8 text-black bg-gray-100 focus:outline-none placeholder:text-gray-500 text-xs"
+            placeholder="search your collection..."
+            autocomplete="off"
+            (input)="searchCollection($event)"
+          />
+          <span class="absolute inset-y-0 pl-2 flex items-center">
+            <i class="fa fa-search text-gray-400" aria-hidden="true"></i>
+          </span>
+        </div>
+      </div>
+      <div class="user-content-box mt-4 mb-24">
+        <div
+          *ngIf="showWishlist"
+          class="user-wishlist-box grid grid-cols-5 gap-8"
+        >
+          <div
+            *ngFor="let wlAlbum of wishlist; let i = index"
+            class="user-wishlist-item"
+            (mouseover)="showWishlistButtons(i)"
+            (mouseleave)="hideWishlistButtons(i)"
+          >
+            <div class="item-cover">
+              <img src="{{ wlAlbum.cover }}" alt="" />
+            </div>
+            <div class="item-info px-1">
+              <div class="item-title mt-2">
+                <a
+                  class="hover:underline text-gray-700"
+                  href="/album/{{ wlAlbum._id }}"
+                  ><p class="font-bold text-sm">
+                    {{ wlAlbum.title }}
+                  </p>
+                  <p class="text-xs">by {{ wlAlbum.artist }}</p></a
+                >
+              </div>
+              <div class="item-featuredTrack mt-4">
+                <p class="text-xs text-gray-500">featured track</p>
+                <p class="text-xs text-black">{{ wlAlbum.tracks[0].title }}</p>
+              </div>
+              <div class="item-buttons item-button-{{ i }} mt-4 flex ">
+                <button
+                  class="wishlishAlbumClickButton"
+                  (click)="removeFromWishlist(wlAlbum._id)"
+                >
+                  <i
+                    class="pt-1 fa fa-heart text-xs text-orange-400"
+                    aria-hidden="true"
+                  ></i>
+                </button>
+                <p class="mx-1">·</p>
+                <a href="#" class="pt-1 text-xs hover:underline">buy now</a>
+                <p class="mx-1">·</p>
+                <a href="#" class="pt-1 text-xs hover:underline"
+                  >send as gift</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          *ngIf="showCollection"
+          class="user-collection-box grid grid-cols-5 gap-8"
+        >
+          <div
+            *ngFor="let cAlbum of collection; let i = index"
+            class="user-collection-item"
+            (mouseover)="showCollectionLinks(i)"
+            (mouseleave)="hideCollectionLinks(i)"
+          >
+            <div class="item-cover">
+              <img src="{{ cAlbum.cover }}" alt="" />
+            </div>
+            <div class="item-info px-1">
+              <div class="item-title mt-2">
+                <a
+                  class="hover:underline text-gray-700"
+                  href="/album/{{ cAlbum._id }}"
+                  ><p class="font-bold text-sm">
+                    {{ cAlbum.title }}
+                  </p>
+                  <p class="text-xs">by {{ cAlbum.artist }}</p></a
+                >
+              </div>
+              <div class="item-featuredTrack mt-4">
+                <p class="text-xs text-gray-500">favorite track</p>
+                <p class="text-xs text-black">{{ cAlbum.tracks[0].title }}</p>
+              </div>
+              <div class="item-links item-links-{{ i }} mt-4">
+                <a class="pt-1 text-xs text-blue-400 hover:underline" href="#"
+                  >Why do you love this album?</a
+                ><br />
+                <a class="pt-1 text-xs text-gray-500 hover:underline" href="#"
+                  >download</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          *ngIf="showFollower"
+          class="user-follower-box grid grid-cols-5 gap-8 mt-10"
+        >
+          <div
+            *ngFor="let follower of currentUser.followers"
+            class="user-follower-item flex"
+          >
+            <div class="item-cover">
+              <img src="{{ follower.profilePic }}" alt="" />
+            </div>
+            <div class="item-info px-1 pl-3">
+              <div class="item-title mt-1">
+                <a class="hover:underline text-gray-700" href="#"
+                  ><p class="font-bold text-sm">{{ follower.username }}</p></a
+                >
+                <p class="text-xs">{{ follower.location }}</p>
+                <button
+                  *ngIf="!isFollowingUser(follower.username)"
+                  class="hover:underline mt-2 text-sm font-bold follow-button"
+                  (click)="followUser(follower.username)"
+                >
+                  Follow
+                </button>
+                <button
+                  *ngIf="isFollowingUser(follower.username)"
+                  class="hover:underline mt-2 text-sm font-bold unfollow-button"
+                  (click)="unfollowUser(follower.username)"
+                >
+                  Unfollow
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          *ngIf="showFollowing"
+          class="user-following-box grid grid-cols-5 gap-8 mt-10"
+        >
+          <div
+            *ngFor="let following of currentUser.followingUser"
+            class="user-following-item flex"
+          >
+            <div class="item-cover">
+              <img src="{{ following.profilePic }}" alt="" />
+            </div>
+            <div class="item-info px-1 pl-3">
+              <div class="item-title mt-1">
+                <a class="hover:underline text-gray-700" href="#"
+                  ><p class="font-bold text-sm">{{ following.username }}</p></a
+                >
+                <p *ngIf="following.location.length == 0" class="text-xs">
+                  &nbsp;
+                </p>
+                <p *ngIf="following.location.length > 0" class="text-xs">
+                  {{ following.location }}
+                </p>
+                <button
+                  class="hover:underline mt-2 text-sm font-bold unfollow-button"
+                  (click)="unfollowUser(following.username)"
+                >
+                  Unfollow
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            *ngFor="let following of currentUser.followingArtist"
+            class="user-following-item flex"
+          >
+            <div class="item-cover">
+              <img src="{{ following.profilePic }}" alt="" />
+            </div>
+            <div class="item-info px-1 pl-3">
+              <div class="item-title mt-1">
+                <a class="hover:underline text-gray-700" href="#"
+                  ><p class="font-bold text-sm">{{ following.name }}</p></a
+                >
+                <p *ngIf="following.location.length == 0" class="text-xs">
+                  &nbsp;
+                </p>
+                <p *ngIf="following.location.length > 0" class="text-xs">
+                  {{ following.location }}
+                </p>
+                <button
+                  class="hover:underline mt-2 text-sm font-bold unfollow-button"
+                  (click)="unfollowArtist(following.name)"
+                >
+                  Unfollow
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

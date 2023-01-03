@@ -1,0 +1,12 @@
+.home-sellingNowContainer {
+    width: 60%;
+    margin: 0px auto;
+  }
+  .sellingItem img {
+    width: 120px;
+    height: auto;
+  }
+  .sellingNowBox-header {
+    color: rgb(71, 169, 226);
+  }
+  

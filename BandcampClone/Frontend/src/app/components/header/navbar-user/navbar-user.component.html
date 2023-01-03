@@ -1,0 +1,94 @@
+<nav class="header-user z-50">
+  <ul class="flex h-14 justify-between">
+    <li class="mr-3 flex">
+      <a class="header-logo" href="/"
+        ><img src="../../../assets/img/BandCamp_(11).png" alt=""
+      /></a>
+      <div class="mr-6 mt-2 ml-4">
+        <div class="relative text-gray-600">
+          <input
+            type="text"
+            name="search"
+            class="w-80 h-10 pl-3 text-black bg-gray-100 rounded-md focus:outline-none placeholder:text-gray-500 text-sm"
+            placeholder="Search for artist, album, or track"
+            autocomplete="off"
+          />
+          <span class="absolute inset-y-0 left-72 flex items-center">
+            <button type="submit" class="">
+              <svg
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                class="w-5 h-5"
+              >
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </button>
+          </span>
+        </div>
+      </div>
+    </li>
+    <li class="mr-6 pl-96 flex">
+      <a
+        class="font-bold linear-color-text pt-5 mr-2 hiring-sign"
+        href="https://bandcamp.com/jobs"
+        >We’re hiring!</a
+      >
+
+      <div class="w-13 nav-notification-col">
+        <button
+          class="font-bold nav-notification text-center w-100"
+          (click)="toggleNotification()"
+          (blur)="closeDropdown()"
+        >
+          <i class="fa fa-bell-o" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div
+        *ngIf="ShowNotification"
+        class="z-50 bg-white absolute w-52 h-52 py-1 mt-14 border border-1 border-neutral-400 rounded-md cursor-pointer"
+      >
+        <div><p class="text-center py-16">No notifications yet.</p></div>
+      </div>
+      <div class="w-13 nav-feed-col">
+        <button class="font-bold nav-feed" href="">
+          <i class="fa fa-bolt" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="w-13 nav-collection-col">
+        <a href="/user/{{ currentUser.username }}">
+          <button class="font-bold nav-collection" href="">
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+          </button>
+        </a>
+      </div>
+      <div class="w-13 nav-profile-col">
+        <button class="font-bold nav-profile" (click)="toggleProfile()">
+          <img class="user-profilePic" src="{{ currentUser.userPFP }}" alt="" />
+        </button>
+      </div>
+      <div
+        *ngIf="ShowProfile"
+        class="z-50 bg-white ml-64 absolute w-52 py-1 mt-14 border border-1 border-neutral-400 rounded-md cursor-pointer"
+      >
+        <a href="user/{{ currentUser.username }}"
+          ><div class="py-2 px-4 w-full hover:bg-neutral-100">
+            view collection
+          </div></a
+        >
+        <div class="py-2 px-4 w-full hover:bg-neutral-100">purchase</div>
+        <hr class="my-2" />
+        <div class="py-2 px-4 w-full hover:bg-neutral-100">setting</div>
+        <div class="py-2 px-4 w-full hover:bg-neutral-100">guide</div>
+        <div class="py-2 px-4 w-full hover:bg-neutral-100">help</div>
+        <div class="py-2 px-4 w-full hover:bg-neutral-100" (click)="logout()">
+          <a href="/">log out</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</nav>
+<div class="h-14"></div>

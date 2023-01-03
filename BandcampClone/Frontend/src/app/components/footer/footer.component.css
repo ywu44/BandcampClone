@@ -1,0 +1,17 @@
+.footer-container{
+    background-color: rgb(71,121,135);
+}
+.foorter-box{
+    padding-top: 2%;
+    width: 60%;
+    margin: 0px auto;
+    color: white;
+    font-size: small;
+}
+.foorter-box p{
+    padding:5px 0px;
+    font-weight: 400;
+}
+.foorter-box a:hover{
+    text-decoration: underline;
+}

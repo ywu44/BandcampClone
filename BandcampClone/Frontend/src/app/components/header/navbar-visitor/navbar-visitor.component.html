@@ -1,0 +1,158 @@
+<nav class="header-visitor pb-3 z-50">
+  <ul class="flex justify-between h-16">
+    <li class="mr-6 ml-3">
+      <a class="header-logo" href="/"
+        ><img src="../../../assets/img/BandCamp_(11).png" alt=""
+      /></a>
+    </li>
+    <li class="mr-6 mt-4">
+      <div class="relative text-gray-600">
+        <input
+          type="text"
+          name="search"
+          class="w-80 h-10 pl-3 text-black bg-gray-100 rounded-md focus:outline-none placeholder:text-gray-500 text-sm"
+          placeholder="Search for artist, album, or track"
+          autocomplete="off"
+        />
+        <span class="absolute inset-y-0 left-72 flex items-center">
+          <button type="submit" class="">
+            <svg
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              class="w-5 h-5"
+            >
+              <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </button>
+        </span>
+      </div>
+    </li>
+  </ul>
+  <ul class="flex justify-between">
+    <li class="mr-6 pl-2">
+      <span
+        >Discover amazing new music and
+        <a
+          class="font-bold linear-color-text"
+          href="https://bandcamp.com/fair_trade_music_policy"
+          >directly support</a
+        >
+        the artists who make it.</span
+      >
+    </li>
+    <li class="mr-6 pl-40">
+      <a class="font-bold linear-color-text" href="https://bandcamp.com/jobs"
+        >We’re hiring!</a
+      >
+    </li>
+    <li class="mr-6">
+      <a
+        class="text-black font-bold hover:underline hover:cursor-pointer"
+        (click)="toggleModal()"
+        >sign up</a
+      >
+    </li>
+    <li class="mr-6">
+      <a class="text-black font-bold hover:underline" href="/login"
+        >log in</a
+      >
+    </li>
+  </ul>
+</nav>
+<div
+  *ngIf="showModal"
+  class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex"
+>
+  <div class="relative my-6 mx-auto max-w-6xl modal-signup">
+    <!--content-->
+    <div
+      class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"
+    >
+      <!--header-->
+      <div
+        class="flex bg-gray-100 h-14 items-start pl-28 border-b border-solid border-slate-200 rounded-t"
+      >
+        <h3 class="text-lg py-3">Sign up for a Bandcamp fan account</h3>
+        <button
+          class="ml-auto bg-transparent border-0 float-right text-3xl"
+          (click)="toggleModal()"
+        >
+          <span
+            class="pr-2 pt-2 bg-transparent text-gray-400 h-6 w-6 text-2xl block outline-none focus:outline-none"
+          >
+            ×
+          </span>
+        </button>
+      </div>
+
+      <!--body-->
+      <form action="" [formGroup]="signupForm">
+        <div class="relative p-6 flex-auto">
+          <div class="emailInputContainer">
+            <label for="email" class="text-lg">Email address</label>
+            <input
+              type="text"
+              type="email"
+              name="email"
+              id="email"
+              formControlName="email"
+              class="signupInput block border border-grey-light px-2 mb-5"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="passwordInputContainer">
+            <label for="password" class="text-lg">Password</label>
+            <input
+              type="password"
+              type="password"
+              name="password"
+              id="password"
+              formControlName="password"
+              class="signupInput block border border-grey-light px-2 mb-5"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="usernameInputContainer">
+            <label for="username" class="text-lg">Username</label>
+            <input
+              type="text"
+              type="username"
+              name="username"
+              id="username"
+              formControlName="username"
+              class="signupInput block border border-grey-light px-2 mb-5"
+              autocomplete="off"
+            />
+          </div>
+          <div class="agreeTerm text-center">
+            <input type="checkbox" name="" id="" checked>
+            <span class="ml-2 text-sm">I have read and agree to the <a href="https://bandcamp.com/terms_of_use" class="termAgree">Terms of Use</a>.</span>
+          </div>
+        </div>
+        
+      </form>
+
+      <!--footer-->
+      <div class="pt-0 flex items-center justify-center p-6 rounded-b">
+        <button
+          class="signup-button w-80 h-8 text-white font-bold px-6 py-1 rounded outline-none focus:outline-none mr-1 mb-1"
+          type="button"
+          (click)="signUp()"
+        >
+          Sign up
+        </button>
+      </div>
+      <p class="text-center mb-10 text-gray-400 text-sm">
+        Already have an account?
+        <a href="/login" class="loginFromSignup">Log in</a>.
+      </p>
+    </div>
+  </div>
+</div>
+<div class="h-24"></div>

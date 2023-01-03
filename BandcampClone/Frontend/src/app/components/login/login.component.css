@@ -1,0 +1,46 @@
+.header-login {
+  background-color: rgb(221, 221, 221);
+  padding-left: 15vw;
+}
+.header-logo img {
+  height: 75px;
+  width: 100%;
+  min-width: 100px;
+}
+
+.signup-button {
+  background-color: rgb(0, 161, 198);
+}
+.loginFromSignup,
+.termAgree {
+  color: rgb(0, 161, 198);
+}
+.loginInput {
+  width: 300px;
+  height: 35px;
+}
+.userInputContainer,
+.passwordInputContainer {
+  width: 60%;
+  margin: 10px 0vw 0px 12.5%;
+}
+.userInputContainer label,
+.passwordInputContainer label {
+  width: 150px;
+}
+
+.login-mainContainer{
+    background-color: rgb(243, 243, 243);
+    height: 100%;
+}
+.body-header-login {
+    width: 60%;
+    margin: 60px auto 0px ;
+}
+.body-header-login hr {
+    border-top:rgb(204,204,204) dotted 2px;
+}
+.login-container {
+    width: 60%;
+    margin: 0px auto;
+}

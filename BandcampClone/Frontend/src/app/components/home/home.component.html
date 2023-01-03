@@ -1,0 +1,209 @@
+<app-header></app-header>
+<div class="home-mainContainer">
+  <app-articles></app-articles>
+  <app-selling-now></app-selling-now>
+  <app-feed></app-feed>
+  <div class="discoverFilterHeader-container pt-16">
+    <div class="discoverFilterHeader flex pb-4">
+      <span class="font-bold text-lg">Discover</span>
+      <span class="pl-6 pt-1 text-gray-400">filter by:</span>
+      <div class="formatFilter">
+        <button class="bg-gray-400 rounded-2xl px-2 py-1 ml-5">
+          <i class="fa fa-file-audio-o" aria-hidden="true"></i> format
+        </button>
+      </div>
+      <div class="browseByArtists ml-auto">
+        <a class="text-gray-500 hover:underline" href="#">browse by artists</a>
+      </div>
+    </div>
+  </div>
+  <div class="discoverFilter">
+    <div class="discoverFilter-genre-container flex justify-center">
+      <button (click)="scrollLeft()" class="text-white genresScrollLeft pr-2">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      </button>
+      <div
+        #genresScroll
+        class="discoverFilter-genre-box flex overflow-hidden scroll-smooth"
+      >
+        <button
+          class="genreSelector duration-200 hover:bg-opacity-50 hover:bg-black focus:bg-black rounded-2xl px-3 text-white font-bold mr-2"
+          id="all"
+          (click)="setFilter($event)"
+        >
+          all
+        </button>
+        <button
+          *ngFor="let genre of genres"
+          class="genreSelector duration-200 hover:bg-opacity-50 hover:bg-black focus:bg-black rounded-2xl px-3 text-white font-bold mr-2"
+          id="{{ genre }}"
+          (click)="setFilter($event)"
+        >
+          {{ genre }}
+        </button>
+      </div>
+      <button (click)="scrollRight()" class="text-white genresScrollRight pl-2">
+        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="discoverFilter-format-container">
+      <div class="discoverFilter-format-box">
+        <button
+          class="formatSelector duration-200 hover:bg-opacity-50 hover:bg-black focus:bg-black rounded-2xl px-3 py-1 text-white font-bold mr-2"
+          (click)="setFilter($event)"
+          id="any"
+        >
+          any format
+        </button>
+        <button
+          *ngFor="let format of formats"
+          class="formatSelector duration-200 hover:bg-opacity-50 hover:bg-black focus:bg-black rounded-2xl px-3 py-1 text-white font-bold mr-2"
+          (click)="setFilter($event)"
+          id="{{ format.split(' ')[0] }}"
+        >
+          {{ format }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="home-discoverContainer pb-8">
+    <div class="home-discoverContent grid grid-cols-3">
+      <div class="discover-albums pt-6 col-span-2 grid grid-cols-4 gap-4">
+        <div
+          *ngFor="
+            let album of albums$
+              | async
+              | paginate : { itemsPerPage: 8, currentPage: p }
+          "
+          class="discover-albums-item"
+        >
+          <button (click)="getCurrentAlbum($event)">
+            <img id="{{ album._id }}" src="{{ album.cover }}" alt="" />
+          </button>
+          <div class="album-info">
+            <a href="album/{{ album._id }}"
+              ><p class="text-sm font-bold hover:underline">
+                {{ album.title }}
+              </p></a
+            >
+            <p class="text-sm">{{ album.artist }}</p>
+            <p class="text-sm text-gray-500">{{ album.genre }}</p>
+          </div>
+        </div>
+        <div class="pagination col-span-4 mb-2 mt-auto">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+
+      <div class="discover-players-container col-span-1 mx-auto">
+        <div class="discover-player bg-white">
+          <div class="album-player">
+            <img src="{{ currentAlbum.cover }}" alt="" />
+            <!-- <div class="player-buttons flex">
+              <button>
+                <i class="fa fa-play p-5 text-xl-center" aria-hidden="true"></i>
+              </button>
+              <div class="player-buttons-info">
+                <p class="text-sm pt-3 pl-2">Regenerator</p>
+              </div>
+            </div> -->
+            <div class="player-buttons">
+              <div class="player-buttons-info">
+                <div class="player-buttons-info-title">
+                  <p class="text-sm pt-3 pl-3">
+                    {{ currentAlbum.tracks[0].title }}
+                  </p>
+                </div>
+                <hr />
+                <div>
+                  <!-- <i class="fa fa-play p-5 text-xl-center" aria-hidden="true"></i> -->
+                  <audio
+                    controls
+                    controlsList="nodownload noplaybackrate"
+                    src="{{ currentAlbum.tracks[0].source }}"
+                  ></audio>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="player-info">
+            <p class="text-sm mt-4">
+              from the album
+              <a href="/album/{{ currentAlbum._id }}" class="hover:underline">{{
+                currentAlbum.title
+              }}</a>
+            </p>
+            <p class="text-sm">
+              by
+              <a href="#" class="hover:underline">{{ currentAlbum.artist }}</a>
+            </p>
+            <div class="player-info-buttons mt-5">
+              <button
+                *ngIf="
+                  !currentUser ||
+                  (currentUser && !albumIsOwned(currentAlbum._id))
+                "
+                class="text-sm font-bold py-2 player-info-buttons-buyNow hover:underline"
+              >
+                buy now
+              </button>
+              <button
+                *ngIf="currentUser && albumIsOwned(currentAlbum._id)"
+                class="text-sm font-bold py-2 player-info-buttons-buyNow hover:underline"
+              >
+                download
+              </button>
+              <button
+                *ngIf="
+                  currentUser &&
+                  !albumIsLiked(currentAlbum._id) &&
+                  !albumIsOwned(currentAlbum._id)
+                "
+                class="text-sm font-bold py-2 player-info-buttons-wishlist hover:underline"
+                (click)="addToWishlist(currentAlbum._id)"
+              >
+                <i class="fa fa-heart-o" aria-hidden="true"></i> wishlist
+              </button>
+              <button
+                *ngIf="
+                  currentUser &&
+                  albumIsLiked(currentAlbum._id) &&
+                  !albumIsOwned(currentAlbum._id)
+                "
+                class="text-sm font-bold py-2 player-info-buttons-wishlist hover:underline"
+                (click)="removeFromWishlist(currentAlbum._id)"
+              >
+                <i class="fa fa-heart text-orange-400" aria-hidden="true"></i>
+                wishlist
+              </button>
+              <button
+                *ngIf="currentUser && albumIsOwned(currentAlbum._id)"
+                class="text-sm font-bold py-2 player-info-buttons-wishlist hover:underline"
+              >
+                <i
+                  class="fa fa-heart text-red-600 text-xs"
+                  aria-hidden="true"
+                ></i>
+                you own this
+              </button>
+              <button
+                *ngIf="!currentUser"
+                class="text-sm font-bold py-2 player-info-buttons-wishlist hover:underline"
+                (click)="pleaseLogInToLike()"
+              >
+                <i class="fa fa-heart-o" aria-hidden="true"></i> wishlist
+              </button>
+              <button
+                class="text-sm font-bold py-2 player-info-buttons-hearMore hover:underline"
+              >
+                <a href="/album/{{ currentAlbum._id }}">hear more</a>
+              </button>
+            </div>
+            <p class="text-sm text-gray-400 pt-2 pl-2">direct from artist</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

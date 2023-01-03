@@ -1,0 +1,204 @@
+<app-header></app-header>
+<div class="album-mainContainer">
+  <div class="album-contentContainer">
+    <div class="album-banner">
+      <img src="https://f4.bcbits.com/img/0018782679_100.png" alt="" />
+    </div>
+    <div class="album-content-header">
+      <a class="pl-4 font-bold" href="#">music</a>
+    </div>
+    <div class="album-mainContent grid grid-cols-7 pt-8">
+      <div class="col-start-1 col-end-4 album-left pl-6 pr-6">
+        <div class="album-title text-2xl">{{ currentAlbum.title }}</div>
+        <div class="album-artist pt-2 text-sm">{{ currentAlbum.artist }}</div>
+        <div class="album-player my-5">
+          <audio
+            controls
+            controlsList="nodownload noplaybackrate"
+            src="{{ currentAlbum.tracks[0].source }}"
+          ></audio>
+        </div>
+        <div class="album-purchase mb-5">
+          <div class="album-format text-sm text-gray-500 font-bold">
+            <p>{{ currentAlbum.format | titlecase }} Album</p>
+          </div>
+          <p class="text-sm">Streaming + Download</p>
+          <p class="text-xs">
+            Includes unlimited streaming via the free Bandcamp app, plus
+            high-quality download in MP3, FLAC and more.
+          </p>
+          <div class="purchase-item pt-2">
+            <a href="#" class="text-xl font-bold"
+              >Buy {{ currentAlbum.format | titlecase }} Album
+            </a>
+            <span class="text-xl font-bold">${{ currentAlbum.price }}</span>
+            <span class="px-1 font-bold"> USD</span>
+            <span class="px-1 text-sm">or more</span><br />
+            <a href="#" class="text-sm">Send as Gift</a>
+          </div>
+        </div>
+        <div class="album-trackList">
+          <div
+            *ngFor="let track of currentAlbum.tracks; let i = index"
+            class="album-track flex py-1"
+          >
+            <button
+              class="bg-white track-play-button"
+              id="track{{ i }}"
+              (click)="playerButtonClick(track.source, i)"
+            >
+              <i class="fa fa-play" aria-hidden="true"></i>
+            </button>
+            <p class="album-track text-xs">
+              <span class="track-title-index"> {{ i + 1 }}. </span>
+              <span class="track-title">{{ track.title }}</span>
+              <span class="track-length pl-2 text-gray-400">
+                {{ track.length | timeConvert }}</span
+              >
+            </p>
+          </div>
+        </div>
+        <div class="album-description pt-6 text-sm text-gray-600">
+          <p>{{ currentAlbum.description }}</p>
+        </div>
+        <div class="album-releaseDate pt-6 text-xs text-gray-500">
+          <p>released {{ currentAlbum.releaseDate | dateConvert }}</p>
+        </div>
+        <div class="album-copyright pt-6 pb-12 text-xs text-gray-500">
+          <p>
+            <i class="fa fa-copyright mr-1" aria-hidden="true"></i>all rights
+            reserved
+          </p>
+        </div>
+      </div>
+      <div class="col-start-4 col-end-7 album-right">
+        <div class="album-cover">
+          <img src="{{ currentAlbum.cover }}" alt="" />
+        </div>
+        <div class="album-shareAndWishlist text-sm mt-2">
+          <button class="share">
+            <i class="fa fa-share-square-o mr-1" aria-hidden="true"></i>
+            <a><span>Share / Embed</span></a>
+          </button>
+
+          <button
+            *ngIf="
+              currentUser &&
+              !albumIsLiked(currentAlbum._id) &&
+              !albumIsOwned(currentAlbum._id)
+            "
+            class="wishlist ml-8"
+            (click)="addToWishlist(currentAlbum._id)"
+          >
+            <i class="fa fa-heart-o mr-1" aria-hidden="true"></i>
+            <a><span>Wishlist</span></a>
+          </button>
+          <button
+            *ngIf="
+              currentUser &&
+              albumIsLiked(currentAlbum._id) &&
+              !albumIsOwned(currentAlbum._id)
+            "
+            class="wishlist ml-8"
+            (click)="removeFromWishlist(currentAlbum._id)"
+          >
+            <i class="fa fa-heart mr-1 text-orange-400" aria-hidden="true"></i>
+            <a><span>Wishlist</span></a>
+          </button>
+          <button
+            *ngIf="currentUser && albumIsOwned(currentAlbum._id)"
+            class="wishlist ml-8"
+          >
+            <i class="fa fa-heart mr-1 text-red-600" aria-hidden="true"></i>
+            <a><span>You own this</span></a>
+          </button>
+          <button
+            *ngIf="!currentUser"
+            class="wishlist ml-8"
+            (click)="pleaseLogInToLike()"
+          >
+            <i class="fa fa-heart-o mr-1" aria-hidden="true"></i>
+            <a><span>Wishlist</span></a>
+          </button>
+        </div>
+        <div class="album-supportedBy mt-6">
+          <p class="album-supportedBy-title text-xs text-gray-400">
+            supported by
+          </p>
+          <div class="mt-2 album-supportedByContent grid grid-cols-10 gap-2">
+            <a
+              *ngFor="let owner of currentAlbum.ownedBy"
+              href="/user/{{ owner.username }}"
+              class="album-supportedBy-userItem"
+            >
+              <img src="{{ owner.profilePic }}" alt="" />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-start-7 col-end-8 album-artist pr-6">
+        <div class="album-artist-container">
+          <div class="album-artist-info">
+            <div class="album-artist-pfp mb-2">
+              <img src="{{ currentArtist.profilePic }}" alt="" />
+            </div>
+            <p class="album-artist-name text-sm">{{ currentArtist.name }}</p>
+            <p class="album-artist-location text-xs">
+              {{ currentArtist.location }}
+            </p>
+            <div class="album-artist-followButtons">
+              <button
+                *ngIf="currentUser && !isFollowingUser(currentArtist.name)"
+                class="bg-gray text-sm py-1 album-artist-followButton"
+                (click)="followArtist(currentArtist.name)"
+              >
+                Follow
+              </button>
+              <button
+                *ngIf="currentUser && isFollowingUser(currentArtist.name)"
+                class="bg-gray text-sm py-1 album-artist-unfollowButton"
+                (click)="unfollowArtist(currentArtist.name)"
+              >
+                Unfollow
+              </button>
+            </div>
+            <a
+              class="album-artist-website text-sm"
+              href="{{ currentArtist.website }}"
+              >{{ currentArtist.website }}</a
+            >
+          </div>
+          <div class="album-artist-discography mt-6">
+            <div class="discography-title mb-4">discography</div>
+            <div
+              *ngFor="let album of currentArtist.albums"
+              class="discography-item my-4"
+            >
+              <a href="/album/{{ album._id }}" class="discography-item-cover">
+                <img src="{{ album.cover }}" alt="" />
+              </a>
+              <a
+                href="/album/{{ album._id }}"
+                class="discography-item-title text-sm"
+              >
+                {{ album.title }}
+              </a>
+              <p class="discography-item-releaseDate text-xs text-gray-400">
+                {{ album.releaseDate | dateConvert }}
+              </p>
+            </div>
+          </div>
+          <div class="album-artist-contacts mt-12 mb-24">
+            <p class="my-4">contact/help</p>
+            <a href="#" class="text-xs">Contact {{ currentArtist.name }}</a
+            ><br />
+            <a href="#" class="text-xs">Streaming and Download help</a><br />
+            <a href="#" class="text-xs">Redeem code</a><br />
+            <a href="#" class="text-xs">Report this track or account</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

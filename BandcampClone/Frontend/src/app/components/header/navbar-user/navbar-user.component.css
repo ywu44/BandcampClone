@@ -1,0 +1,63 @@
+.header-user {
+  width: 100vw;
+  min-width: 800px;
+  padding:0px 15vw 0px;
+  position: fixed;
+  top: 0;
+  background-color: white;
+}
+.header-logo img {
+  height: 60px;
+  width: 100%;
+  min-width: 100px;
+}
+.linear-color-text {
+  background: linear-gradient(to right, rgb(91, 77, 250), rgb(71, 169, 226));
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: small;
+}
+.user-profilePic {
+  width: 45px;
+  height: auto;
+  border-radius: 50px;
+  padding: 6px 8px;
+}
+.nav-notification,
+.nav-feed,
+.nav-collection,
+.nav-profile {
+  width: 100%;
+  height: 100%;
+  padding-top: 8px;
+}
+.hiring-sign {
+  min-width: 100px;
+}
+.nav-notification-col,
+.nav-feed-col,
+.nav-collection-col,
+.nav-profile-col {
+  width: 50px;
+  text-align: center;
+  font-size: 24px;
+}
+.nav-notification-col button,
+.nav-feed-col button,
+.nav-collection-col button,
+.nav-profile-col button {
+  display: block;
+  transition: 0.2s;
+  padding-bottom: 10px;
+}
+.nav-notification-col button:hover,
+.nav-feed-col button:hover,
+.nav-collection-col button:hover,
+.nav-profile-col button:hover {
+  background-color: rgb(245, 245, 245);
+  cursor: pointer;
+}
+hr {
+  width: 90%;
+  margin: 10px auto;
+}

@@ -1,0 +1,32 @@
+.home-feed-container {
+    background-color: rgb(238, 242, 243);
+  }
+  .home-feed-content-container {
+    width: 60%;
+    margin: 0px auto;
+  }
+  .liveStream-items img {
+    width: 200px;
+  }
+  .liveStream-item {
+    width: 200px;
+  }
+  .newAndNotable-item {
+    width: 200px;
+    height: 400px;
+  }
+  .bandcampDaily-item-main img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+  }
+  .bandcampDaily-item {
+    height: 250px;
+  }
+  .bandcampDaily-item img {
+    height: 150px;
+    object-fit: cover;
+  }
+  .emailSubButton:hover {
+    background-color: rgb(71, 169, 226);
+  }

@@ -1,0 +1,128 @@
+<div class="home-feed-container mt-12">
+    <div class="home-feed-content-container">
+      <div class="home-liveStreamsContainer pt-12">
+        <div class="home-liveStreamsContainer-titles flex justify-between my-4">
+          <p style="color: rgb(71, 169, 226)">UPCOMING BANDCAMP LIVE STREAMS</p>
+          <p>This is a placeholder since the model doesn't exist</p>
+          <a class="text-gray-500 hover:underline hover:cursor-pointer"
+            >view full schedule</a
+          >
+        </div>
+        <div class="home-liveStreamsContainer-content">
+          <div class="liveStream-items flex justify-between">
+            <div
+              *ngFor="let i of [].constructor(5)"
+              class="liveStream-item bg-white"
+            >
+              <img src="https://f4.bcbits.com/img/0030370935_36.jpg" alt="" />
+              <div class="liveStream-item-info px-3">
+                <a href="#" class="font-bold hover:underline"
+                  >CARY GRACE BAND - LIVE<br /><span class="font-normal"
+                    >Visual Radio Arts</span
+                  ></a
+                >
+                <p class="text-xs mt-4 text-gray-600">
+                  <i class="fa fa-calendar-o" aria-hidden="true"></i> January 6,
+                  2023
+                </p>
+                <p class="text-xs mt-2 mb-2 text-gray-600">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i> 3:00 PM EST
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="home-newAndNotableContainer mt-16">
+        <div
+          class="home-newAndNotableContainer-titles flex justify-between my-4"
+        >
+          <p style="color: rgb(71, 169, 226)">NEW AND NOTABLE</p>
+          <p>This is a placeholder since the model doesn't exist</p>
+          <a class="text-gray-500 hover:underline hover:cursor-pointer"
+            >view full news</a
+          >
+        </div>
+        <div class="home-newAndNotableContainer-content">
+          <div class="newAndNotable-items flex justify-between">
+            <div
+              *ngFor="let i of [].constructor(5)"
+              class="newAndNotable-item bg-white"
+            >
+              <img src="https://f4.bcbits.com/img/a3307726895_2.jpg" alt="" />
+              <div class="newAndNotable-item-info px-3">
+                <a href="#" class="font-bold hover:underline"
+                  >APESHIT by The Sound of Animals Fighting
+                  <p class="font-normal text-sm text-gray-500">rock</p></a
+                >
+                <p class="text-sm">
+                  This Dallas group specializes in knotty, proggy songs with
+                  corkscrewing guitar lines, tricky rhythms and big, yearning
+                  vocals.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="home-bandcampDailyContainer mt-16">
+        <div
+          class="home-bandcampDailyContainer-titles flex justify-between my-4"
+        >
+          <p style="color: rgb(71, 169, 226)">BANDCAMP DAILY</p>
+          <p>This is a placeholder since the model doesn't exist</p>
+        </div>
+        <div class="home-bandcampDailyContainer-content">
+          <div class="bandcampDaily-items grid grid-cols-5 gap-10">
+            <div class="bandcampDaily-item-main bg-white col-span-3 flex">
+              <img src="https://f4.bcbits.com/img/a0058718558_13.jpg" alt="" />
+              <div class="bandcampDaily-item-main-info px-3 py-5">
+                <a href="#" class="font-bold text-lg hover:underline"
+                  >Common Ground vol.2
+                  <p class="font-normal text-gray-500">
+                    by Safe Ground Rec.
+                  </p></a
+                >
+                <p class="text-sm">
+                  Assembled by LB Marszalek, this charity compilation showcases
+                  an array of ambient trendsetters.
+                </p>
+                <p class="text-xs text-gray-400 mt-24">ALBUM OF THE DAY</p>
+              </div>
+            </div>
+            <div
+              *ngFor="let i of [].constructor(10)"
+              class="bandcampDaily-item bg-white"
+            >
+              <img src="https://f4.bcbits.com/img/0030711443_0" alt="" />
+              <div class="bandcampDaily-item-info px-3">
+                <a href="#" class="text-xs hover:underline"
+                  >The best Jazz Album of 2022
+                </a>
+                <p class="font-normal text-xs text-gray-500">Dave Sumner</p>
+                <p class="text-xs text-gray-400 mt-6">List</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="emailSubscription mt-16">
+      <p class="text-center">
+        Get the best of Bandcamp Daily, delivered every Friday
+      </p>
+      <div class="emailSubscriptionInput flex justify-center mt-6">
+        <input
+          class="pl-2 w-64 border-2 border-gray-200 focus:border-blue-400"
+          type="text"
+          name="emailSub"
+          id="emailSub"
+        />
+        <button
+          class="text-white bg-black px-12 py-2 rounded ml-4 text-sm font-bold emailSubButton duration-200"
+        >
+          SIGN UP
+        </button>
+      </div>
+    </div>
+  </div>

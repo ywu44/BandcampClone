@@ -1,0 +1,130 @@
+.discoverFilterHeader-container {
+  background-color: rgb(238, 242, 243);
+}
+.discoverFilterHeader {
+  width: 60%;
+  margin: 0px auto;
+}
+.discoverFilter-genre-container {
+  background-color: rgb(66, 160, 189);
+  padding: 5px 0px;
+}
+.discoverFilter-genre-box {
+  width: 60%;
+
+  height: 30px;
+}
+.discoverFilter-format-container {
+  background-color: rgb(66, 129, 148);
+  padding: 5px 0px;
+}
+.discoverFilter-format-box {
+  width: 60%;
+  margin: 0px auto;
+  height: 30px;
+}
+
+.home-discoverContainer {
+  background-color: rgb(238, 242, 243);
+}
+.home-discoverContent {
+  width: 60%;
+  margin: 0px auto;
+}
+.discover-albums-item img {
+  width: 100%;
+  max-height: 175px;
+  object-fit: cover;
+}
+
+.discover-player {
+  width: 18vw;
+  height: 65vh;
+}
+.album-player {
+  padding-top: 7%;
+  width: 95%;
+  margin: 0px auto;
+}
+.album-player img {
+  width: 100%;
+  max-height: 300px;
+  height: auto;
+}
+
+.pagination /deep/ .ngx-pagination .current {
+  color: rgb(64, 142, 172);
+}
+
+.pagination /deep/ .ngx-pagination li {
+  background: white;
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 5px;
+  margin-right: 6px;
+}
+
+.pagination /deep/ .ngx-pagination a::after,
+.pagination /deep/ .ngx-pagination li::before,
+.pagination /deep/ .ngx-pagination li::after,
+.pagination /deep/ .ngx-pagination a::before {
+  display: none;
+}
+
+/* .player-buttons i {
+  border-top: none;
+  border-right: 1px solid rgb(200, 200, 200);
+  border-bottom: 1px solid rgb(200, 200, 200);
+  border-left: 1px solid rgb(200, 200, 200);
+}
+.player-buttons-info {
+  width: 90%;
+  border-top: none;
+  border-right: 1px solid rgb(200, 200, 200);
+  border-bottom: 1px solid rgb(200, 200, 200);
+  border-left: none;
+} */
+.player-buttons {
+  padding: 0px 15px 15px;
+  border: 1px solid rgb(200, 200, 200);
+}
+.player-buttons audio{
+  max-height: 100%;
+  max-width: 100%;
+  margin: auto;
+  object-fit: contain;
+}
+.player-buttons-info-title {
+  margin: 0px 0px 10px;
+}
+.player-info {
+  width: 95%;
+  margin: 0px auto;
+}
+
+.player-info-buttons button {
+  width: 33%;
+}
+.player-info-buttons-buyNow {
+  border-top: 1px solid rgb(200, 200, 200);
+  border-right: 1px solid rgb(200, 200, 200);
+  border-bottom: 1px solid rgb(200, 200, 200);
+  border-left: 1px solid rgb(200, 200, 200);
+}
+.player-info-buttons-wishlist {
+  border-top: 1px solid rgb(200, 200, 200);
+  border-bottom: 1px solid rgb(200, 200, 200);
+}
+.player-info-buttons-hearMore {
+  border-top: 1px solid rgb(200, 200, 200);
+  border-right: 1px solid rgb(200, 200, 200);
+  border-bottom: 1px solid rgb(200, 200, 200);
+  border-left: 1px solid rgb(200, 200, 200);
+}
+
+audio::-webkit-media-controls-panel{
+  padding:0px 0px;
+  background-color: white;
+}
+audio::-webkit-media-controls-toggle-closed-captions-button{
+  display: none;
+}

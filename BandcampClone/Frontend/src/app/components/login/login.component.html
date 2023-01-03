@@ -1,0 +1,64 @@
+<div class="login-mainContainer pb-24">
+  <div class="header-login">
+    <ul class="flex h-28 justify-start">
+      <li class="mt-4 flex">
+        <a class="header-logo ml-16" href="/"
+          ><img src="../../../assets/img/BandCamp_(11).png" alt=""
+        /></a>
+      </li>
+    </ul>
+  </div>
+  <div class="login-container">
+    <form action="" [formGroup]="loginForm">
+      <div class="body-header-login text-center">
+        <p class="pb-12 text-lg">Log in</p>
+        <hr />
+      </div>
+
+      <div class="relative p-6 flex-auto">
+        <div class="userInputContainer flex justify-center">
+          <label for="userInput" class="text-lg mr-2 text-end"
+            >Username / email</label
+          >
+          <input
+            type="text"
+            type="userInput"
+            name="userInput"
+            id="userInput"
+            formControlName="userInput"
+            class="loginInput block border border-grey-light px-2 mb-5"
+          />
+        </div>
+
+        <div class="passwordInputContainer flex justify-center">
+          <label for="password" class="text-lg mr-2 text-end">Password</label>
+          <input
+            type="password"
+            type="password"
+            name="password"
+            id="password"
+            formControlName="password"
+            class="loginInput block border border-grey-light px-2 mb-5"
+          />
+        </div>
+        <div class="pt-0 flex items-center justify-center p-6 rounded-b">
+          <button
+            class="signup-button w-72 h-8 text-white font-bold px-6 py-1 outline-none focus:outline-none mr-1 mb-1"
+            type="submit"
+            (click)="login()"
+          >
+            Log in
+          </button>
+        </div>
+        <div class="agreeTerm text-center">
+          <span class="ml-2 text-sm"
+            ><a href="https://bandcamp.com/terms_of_use" class="termAgree"
+              >Forgot your password?</a
+            ></span
+          >
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<app-footer></app-footer>

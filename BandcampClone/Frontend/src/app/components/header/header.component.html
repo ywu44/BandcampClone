@@ -1,0 +1,7 @@
+<div *ngIf="currentUser">
+    <app-navbar-user></app-navbar-user>
+</div>
+<div *ngIf="!currentUser">
+    <app-navbar-visitor></app-navbar-visitor>
+</div>
+

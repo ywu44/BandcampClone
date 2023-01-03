@@ -1,0 +1,81 @@
+.user-banner {
+  width: 100%;
+  height: 90px;
+}
+.user-banner img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.uer-contentMainContainer {
+  width: 65%;
+  margin: 0px auto;
+}
+.user-content-box {
+  min-height: 65vh;
+}
+.user-pfp img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+.edit-profile button {
+  border: 1px solid gray;
+  border-radius: 5px;
+  color: gray;
+  padding: 1px 10px;
+}
+.share {
+  color: rgb(0, 161, 198);
+}
+.user-header-info-website a {
+  color: rgb(0, 161, 198);
+}
+.contentChangeButtons {
+  border-bottom: 1px solid rgb(221, 221, 221);
+}
+.contentChangeButton {
+  padding: 2px 20px;
+  color: rgb(0, 161, 198);
+}
+
+.user-wishlist-item,
+.user-collection-item {
+  padding: 0px 0px 20px;
+}
+.user-wishlist-item:hover,
+.user-collection-item:hover {
+  margin: -1px;
+  border: 1px dotted gray;
+}
+.item-cover img {
+  width: 222px;
+  height: 222px;
+  object-fit: cover;
+}
+
+.user-follower-item .item-cover img,
+.user-following-item .item-cover img {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+}
+.item-info .follow-button {
+  border: 1px solid rgb(0, 161, 198);
+  color: rgb(0, 161, 198);
+  border-radius: 5px;
+  padding: 0px 10px;
+}
+.item-info .unfollow-button {
+  border: 1px solid gray;
+  color: gray;
+  border-radius: 5px;
+  padding: 0px 10px;
+}
+.item-buttons{
+  visibility: hidden;
+}
+.item-links{
+  visibility: hidden;
+}
